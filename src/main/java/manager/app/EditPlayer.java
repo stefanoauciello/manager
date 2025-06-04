@@ -83,10 +83,10 @@ public class EditPlayer extends BaseActivity {
         save.setOnClickListener(v -> {
             if (name.getText().length() != 0 && name.getText() != null) {
 
-                    boolean isGoalKeeper = goalkeeper.isChecked();
-                    int goalkeeperNumber = 0;
+                    var isGoalKeeper = goalkeeper.isChecked();
+                    var goalkeeperNumber = 0;
                     if (isGoalKeeper) goalkeeperNumber = 1;
-                    Boolean alreadyExist = false;
+                    var alreadyExist = false;
 
                     for (int idx = 0; idx < EditPlayer.this.alreadyExist.size(); idx++) {
                         if (EditPlayer.this.alreadyExist.get(idx).equals(String.valueOf(name.getText()))) {

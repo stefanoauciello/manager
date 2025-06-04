@@ -78,8 +78,8 @@ public class InsertPlayer extends BaseActivity {
             return;
         }
 
-        boolean alreadyExistName = alreadyExist.contains(String.valueOf(name.getText()));
-        int goalKeeper = goalkeeper.isChecked() ? 1 : 0;
+        var alreadyExistName = alreadyExist.contains(String.valueOf(name.getText()));
+        var goalKeeper = goalkeeper.isChecked() ? 1 : 0;
 
         if (!alreadyExistName) {
             dbHelper.insertPlayer(writableDatabase, String.valueOf(name.getText()), "00000000", goalKeeper);

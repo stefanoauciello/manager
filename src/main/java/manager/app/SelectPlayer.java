@@ -68,14 +68,14 @@ public class SelectPlayer extends BaseActivity {
             playersName.clear();
             GoalKeepersName.clear();
 
-                int len = mylist.getCount();
-                SparseBooleanArray checked = mylist.getCheckedItemPositions();
-                boolean goalKeepers = false;
-                boolean players = false;
-                int numberGoalKeeper = 0;
-                int numberPlayers = 0;
+                var len = mylist.getCount();
+                var checked = mylist.getCheckedItemPositions();
+                var goalKeepers = false;
+                var players = false;
+                var numberGoalKeeper = 0;
+                var numberPlayers = 0;
 
-                for (int i = 0; i < len; i++) {
+                for (var i = 0; i < len; i++) {
                     if (checked.get(i)) {
                         idSelect.add(Integer.valueOf(listComplete.get(i)[2]));
                         if (Integer.valueOf(listComplete.get(i)[0]) == 1) {
