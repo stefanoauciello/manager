@@ -31,31 +31,23 @@ public class MainActivity extends Activity {
         createTeam.setAnimation(Utils.getAnimation(3000, 0, 0, 0, 700));
         exit.setAnimation(Utils.getAnimation(3000, 0, 0, 0, 700));
 
-        managePlayers.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent newIntent = new Intent(MainActivity.this, ManagePlayer.class)
-                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(newIntent, ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_pre, R.anim.animation_post).toBundle());
-                System.gc();
-            }
+        managePlayers.setOnClickListener(v -> {
+            Intent newIntent = new Intent(MainActivity.this, ManagePlayer.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(newIntent, ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_pre, R.anim.animation_post).toBundle());
+            System.gc();
         });
 
-        createTeam.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent newIntent = new Intent(MainActivity.this, FirstFrame.class)
-                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(newIntent, ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_pre, R.anim.animation_post).toBundle());
-                System.gc();
-            }
+        createTeam.setOnClickListener(v -> {
+            Intent newIntent = new Intent(MainActivity.this, FirstFrame.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(newIntent, ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_pre, R.anim.animation_post).toBundle());
+            System.gc();
         });
 
-        exit.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        exit.setOnClickListener(v -> onBackPressed());
     }
 
     @Override
@@ -64,14 +56,7 @@ public class MainActivity extends Activity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Termina")
                 .setMessage("Sei sicuro di voler chiudere l'app?")
-                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        MainActivity.this.finish();
-                    }
-
-                })
+                .setPositiveButton("Si", (dialog, which) -> MainActivity.this.finish())
                 .setNegativeButton("No", null)
                 .show();
     }

@@ -60,18 +60,15 @@ public class InsertPlayer extends Activity {
             alreadyExist.add(allName.get(i)[3]);
         }
 
-        name.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (first_time_name == 0) {
-                    name.setText("");
-                    first_time_name = 1;
-                }
+        name.setOnClickListener(v -> {
+            if (first_time_name == 0) {
+                name.setText("");
+                first_time_name = 1;
             }
         });
 
-        insert.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (name.getText().length() != 0 && name.getText() != null) {
+        insert.setOnClickListener(v -> {
+            if (name.getText().length() != 0 && name.getText() != null) {
 
                     Boolean already_exist = false;
 
@@ -99,7 +96,6 @@ public class InsertPlayer extends Activity {
                             Toast.makeText(getApplicationContext(), "Nome inserito già esistente nel Database", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }
             }
         });
     }
