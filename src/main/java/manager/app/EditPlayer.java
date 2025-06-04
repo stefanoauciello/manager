@@ -20,7 +20,7 @@ public class EditPlayer extends BaseActivity {
 
     private EditText name;
     private CheckBox goalkeeper;
-    private ImageView save, nameLabel, delete;
+    private ImageView save, delete;
 
     private MySQLiteHelper dbHelper;
     private SQLiteDatabase readableDatabase;
@@ -31,7 +31,6 @@ public class EditPlayer extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_player);
 
-        nameLabel = findViewById(R.id.nameLabel);
         name = findViewById(R.id.name);
         goalkeeper = findViewById(R.id.goalkeeper);
         save = findViewById(R.id.save);
@@ -64,8 +63,6 @@ public class EditPlayer extends BaseActivity {
         name.setText("");
         goalkeeper.setChecked(false);
         save.setAnimation(Utils.getAnimation(3000, 0, 0, 0, 1200));
-        nameLabel.setAnimation(Utils.getAnimation(3000, 0, 0, 0, 700));
-        nameLabel.setAnimation(Utils.getAnimation(3000, 0, 0, 0, 700));
         name.setAnimation(Utils.getAnimation(3000, 0, 0, 0, 800));
         goalkeeper.setAnimation(Utils.getAnimation(3000, 0, 0, 0, 1100));
 

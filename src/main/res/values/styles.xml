@@ -1,4 +1,10 @@
 <resources>
 
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar"></style>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/md_theme_primary</item>
+        <item name="colorPrimaryVariant">@color/md_theme_primary_variant</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSecondary">@color/md_theme_secondary</item>
+    </style>
+
 </resources>

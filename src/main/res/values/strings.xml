@@ -60,5 +60,9 @@
     <string name="organize_team">Squadre</string>
     <string name="location_sms">Dove e quando</string>
 
-
+    <string name="exit_label">Esci</string>
+    <string name="five_players">5 giocatori</string>
+    <string name="seven_players">7 giocatori</string>
+    <string name="save">Salva</string>
+    <string name="delete">Elimina</string>
 </resources>

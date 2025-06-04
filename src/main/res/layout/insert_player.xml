@@ -1,77 +1,61 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InsertPlayer"
-    tools:ignore="MergeRootFrame">
+    tools:context=".InsertPlayer">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
+        android:id="@+id/bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/background" />
+        android:src="@drawable/background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="#80000000">
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#80000000"
+        android:padding="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/nameLabel"
-            android:layout_margin="10dp"
-            android:background="#FFFFFF"
-            android:ems="10"
-            android:inputType="textPersonName" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/nameLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_margin="10dp"
-            android:background="#80000000"
-            android:src="@drawable/nome" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Nome" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <ImageView
-            android:id="@+id/insert"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_margin="10dp"
-            android:src="@drawable/aggiungi" />
-
-        <CheckBox
+        <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/goalkeeper"
             android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
-            android:layout_below="@+id/name"
-            android:layout_marginTop="12dp"
-            android:background="#FFFFFF"
-            android:text="Portiere" />
-    </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/Portiere" />
 
-</RelativeLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/insert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/Aggiungi"
+            app:icon="@drawable/aggiungi"
+            app:iconPadding="8dp" />
 
+    </LinearLayout>
 
+</androidx.constraintlayout.widget.ConstraintLayout>

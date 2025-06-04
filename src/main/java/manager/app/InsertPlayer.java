@@ -4,7 +4,6 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,7 +19,7 @@ public class InsertPlayer extends BaseActivity {
 
     private EditText name;
     private CheckBox goalkeeper;
-    private ImageView insert, nameLabel;
+    private ImageView insert;
 
     private MySQLiteHelper dbHelper;
     private SQLiteDatabase readableDatabase;
@@ -34,7 +33,6 @@ public class InsertPlayer extends BaseActivity {
         insert = findViewById(R.id.insert);
         name = findViewById(R.id.name);
         goalkeeper = findViewById(R.id.goalkeeper);
-        nameLabel = findViewById(R.id.nameLabel);
 
         dbHelper = new MySQLiteHelper(getApplicationContext());
         readableDatabase = dbHelper.getReadableDatabase();
@@ -47,7 +45,6 @@ public class InsertPlayer extends BaseActivity {
         super.onStart();
 
         insert.setAnimation(Utils.getAnimation(3000, 0, 0, 0, 1200));
-        nameLabel.setAnimation(Utils.getAnimation(3000, 0, 0, 0, 700));
         name.setAnimation(Utils.getAnimation(3000, 0, 0, 0, 800));
         goalkeeper.setAnimation(Utils.getAnimation(3000, 0, 0, 0, 1100));
 
