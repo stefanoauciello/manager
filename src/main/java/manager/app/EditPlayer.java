@@ -1,13 +1,8 @@
 package manager.app;
 
-import android.app.Activity;
-import android.app.ActivityOptions;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,7 +11,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-public class EditPlayer extends Activity {
+public class EditPlayer extends BaseActivity {
 
     public static int idToEdit = 0;
     private ArrayList<String> alreadyIDExist = new ArrayList<>(), alreadyExist = new ArrayList<>();
@@ -49,11 +44,7 @@ public class EditPlayer extends Activity {
 
     @Override
     public void onBackPressed() {
-        Intent newIntent = new Intent(EditPlayer.this, ManagePlayer.class)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(newIntent, ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_pre, R.anim.animation_post).toBundle());
-        System.gc();
+        navigateTo(ManagePlayer.class);
     }
 
     @Override
@@ -65,9 +56,9 @@ public class EditPlayer extends Activity {
         alreadyExist.clear();
         alreadyIDExist.clear();
 
-        for (int i = 0; i < allName.size(); i++) {
-            alreadyExist.add(allName.get(i)[3]);
-            alreadyIDExist.add(allName.get(i)[2]);
+        for (String[] p : allName) {
+            alreadyExist.add(p[3]);
+            alreadyIDExist.add(p[2]);
         }
 
         name.setText("");
@@ -92,18 +83,17 @@ public class EditPlayer extends Activity {
             goalkeeper.setChecked(true);
         }
 
-        save.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (name.getText().length() != 0 && name.getText() != null) {
+        save.setOnClickListener(v -> {
+            if (name.getText().length() != 0 && name.getText() != null) {
 
                     boolean isGoalKeeper = goalkeeper.isChecked();
                     int goalkeeperNumber = 0;
                     if (isGoalKeeper) goalkeeperNumber = 1;
                     Boolean alreadyExist = false;
 
-                    for (int cic = 0; cic < EditPlayer.this.alreadyExist.size(); cic++) {
-                        if (EditPlayer.this.alreadyExist.get(cic).equals(String.valueOf(name.getText()))) {
-                            alreadyExist = !alreadyIDExist.get(cic).equals(String.valueOf(idToEdit));
+                    for (int idx = 0; idx < EditPlayer.this.alreadyExist.size(); idx++) {
+                        if (EditPlayer.this.alreadyExist.get(idx).equals(String.valueOf(name.getText()))) {
+                            alreadyExist = !alreadyIDExist.get(idx).equals(String.valueOf(idToEdit));
                         }
                     }
 
@@ -124,39 +114,27 @@ public class EditPlayer extends Activity {
                         Toast.makeText(getApplicationContext(), "Giocatore modificato", Toast.LENGTH_SHORT).show();
                         onBackPressed();
                     } else {
-                        if (alreadyExist) {
-                            Toast.makeText(getApplicationContext(), "Nome inserito già esistente nel Database", Toast.LENGTH_SHORT).show();
-                        }
+                        Toast.makeText(getApplicationContext(), "Nome inserito già esistente nel Database", Toast.LENGTH_SHORT).show();
                     }
                 }
-            }
         });
 
-        delete.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                new AlertDialog.Builder(EditPlayer.this)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Elimina")
-                        .setMessage("Eliminare il giocatore?")
-                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (name.getText().length() != 0 && name.getText() != null) {
-                                    writableDatabase = dbHelper.getWritableDatabase();
-                                    int success = dbHelper.deletePlayerById(writableDatabase, idToEdit);
-                                    dbHelper.close();
-                                    writableDatabase.close();
-                                    Toast.makeText(getApplicationContext(), "Giocatore eliminato correttamente.", Toast.LENGTH_SHORT).show();
-                                    onBackPressed();
-                                }
-                            }
-
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
-            }
-        });
+        delete.setOnClickListener(v -> new AlertDialog.Builder(EditPlayer.this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Elimina")
+                .setMessage("Eliminare il giocatore?")
+                .setPositiveButton("Si", (dialog, which) -> {
+                    if (name.getText().length() != 0 && name.getText() != null) {
+                        writableDatabase = dbHelper.getWritableDatabase();
+                        dbHelper.deletePlayerById(writableDatabase, idToEdit);
+                        dbHelper.close();
+                        writableDatabase.close();
+                        Toast.makeText(getApplicationContext(), "Giocatore eliminato correttamente.", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show());
 
         dbHelper.close();
         readableDatabase.close();

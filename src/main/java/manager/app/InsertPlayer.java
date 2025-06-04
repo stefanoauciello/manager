@@ -1,6 +1,5 @@
 package manager.app;
 
-import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,10 +12,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class InsertPlayer extends Activity {
+public class InsertPlayer extends BaseActivity {
 
-    private int first_time_name = 0, first_time_number = 0;
-    private ArrayList<String> alreadyExist = new ArrayList<String>();
+    private int first_time_name = 0;
+    private final ArrayList<String> alreadyExist = new ArrayList<>();
     private ArrayList<String[]> allName;
 
     private EditText name;
@@ -52,13 +51,7 @@ public class InsertPlayer extends Activity {
         name.setAnimation(Utils.getAnimation(3000, 0, 0, 0, 800));
         goalkeeper.setAnimation(Utils.getAnimation(3000, 0, 0, 0, 1100));
 
-
-        allName = dbHelper.getAllPlayer(readableDatabase);
-
-        alreadyExist.clear();
-        for (int i = 0; i < allName.size(); i++) {
-            alreadyExist.add(allName.get(i)[3]);
-        }
+        loadExistingPlayers();
 
         name.setOnClickListener(v -> {
             if (first_time_name == 0) {
@@ -67,48 +60,45 @@ public class InsertPlayer extends Activity {
             }
         });
 
-        insert.setOnClickListener(v -> {
-            if (name.getText().length() != 0 && name.getText() != null) {
-
-                    Boolean already_exist = false;
-
-                    if (alreadyExist.contains(String.valueOf(name.getText()))) {
-                        already_exist = true;
-                    }
-
-                    boolean isGoalKepper = goalkeeper.isChecked();
-                    int GoalKeeper = 0;
-                    if (isGoalKepper) GoalKeeper = 1;
-
-                    if (!already_exist) {
-
-                        dbHelper.insertPlayer(writableDatabase, String.valueOf(name.getText()), "00000000", GoalKeeper);
-                        dbHelper.close();
-                        writableDatabase.close();
-
-                        name.setText("");
-                        goalkeeper.setChecked(false);
-
-                        Toast.makeText(getApplicationContext(), "Giocatore inserito", Toast.LENGTH_SHORT).show();
-                        onBackPressed();
-                    } else {
-                        if (already_exist) {
-                            Toast.makeText(getApplicationContext(), "Nome inserito già esistente nel Database", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-            }
-        });
+        insert.setOnClickListener(v -> handleInsert());
     }
 
     @Override
     public void onBackPressed() {
         name.setText("");
         goalkeeper.setChecked(false);
-        Intent newIntent = new Intent(InsertPlayer.this, ManagePlayer.class)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(newIntent, ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_pre, R.anim.animation_post).toBundle());
-        System.gc();
+        navigateTo(ManagePlayer.class);
+    }
+
+    private void loadExistingPlayers() {
+        allName = dbHelper.getAllPlayer(readableDatabase);
+        alreadyExist.clear();
+        for (String[] player : allName) {
+            alreadyExist.add(player[3]);
+        }
+    }
+
+    private void handleInsert() {
+        if (name.getText().length() == 0) {
+            return;
+        }
+
+        boolean alreadyExistName = alreadyExist.contains(String.valueOf(name.getText()));
+        int goalKeeper = goalkeeper.isChecked() ? 1 : 0;
+
+        if (!alreadyExistName) {
+            dbHelper.insertPlayer(writableDatabase, String.valueOf(name.getText()), "00000000", goalKeeper);
+            dbHelper.close();
+            writableDatabase.close();
+
+            name.setText("");
+            goalkeeper.setChecked(false);
+
+            Toast.makeText(getApplicationContext(), "Giocatore inserito", Toast.LENGTH_SHORT).show();
+            onBackPressed();
+        } else {
+            Toast.makeText(getApplicationContext(), "Nome inserito già esistente nel Database", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

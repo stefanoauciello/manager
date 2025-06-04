@@ -1,15 +1,12 @@
 package manager.app;
 
-import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
     private ImageView managePlayers, createTeam, exit;
 
@@ -31,21 +28,9 @@ public class MainActivity extends Activity {
         createTeam.setAnimation(Utils.getAnimation(3000, 0, 0, 0, 700));
         exit.setAnimation(Utils.getAnimation(3000, 0, 0, 0, 700));
 
-        managePlayers.setOnClickListener(v -> {
-            Intent newIntent = new Intent(MainActivity.this, ManagePlayer.class)
-                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(newIntent, ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_pre, R.anim.animation_post).toBundle());
-            System.gc();
-        });
+        managePlayers.setOnClickListener(v -> navigateTo(ManagePlayer.class));
 
-        createTeam.setOnClickListener(v -> {
-            Intent newIntent = new Intent(MainActivity.this, FirstFrame.class)
-                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(newIntent, ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_pre, R.anim.animation_post).toBundle());
-            System.gc();
-        });
+        createTeam.setOnClickListener(v -> navigateTo(FirstFrame.class));
 
         exit.setOnClickListener(v -> onBackPressed());
     }

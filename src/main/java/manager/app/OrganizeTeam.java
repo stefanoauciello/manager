@@ -1,9 +1,6 @@
 package manager.app;
 
-import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Context;
-import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -21,7 +18,7 @@ import java.util.Collections;
  * Created by step1 on 06/03/2017.
  */
 
-public class OrganizeTeam extends Activity implements SensorEventListener {
+public class OrganizeTeam extends BaseActivity implements SensorEventListener {
 
     private static final int SHAKE_THRESHOLD = 7000;
     public static int fromSend = 0, howSend = 0, game_org = 0, shake_active = 0;
@@ -87,12 +84,7 @@ public class OrganizeTeam extends Activity implements SensorEventListener {
         totale.add(name_por_org.get(1));
 
         shuffle_func(totale);
-        shake.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                shuffle_func(totale);
-            }
-        });
+        shake.setOnClickListener(v -> shuffle_func(totale));
 
         Toast.makeText(getApplicationContext(), "Effettua subito lo screen e condividilo con gli amici!!", Toast.LENGTH_LONG).show();
     }
@@ -198,11 +190,7 @@ public class OrganizeTeam extends Activity implements SensorEventListener {
 
     @Override
     public void onBackPressed() {
-        Intent newIntent = new Intent(OrganizeTeam.this, SelectPlayer.class)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(newIntent, ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_pre, R.anim.animation_post).toBundle());
-        System.gc();
+        navigateTo(SelectPlayer.class);
     }
 
     public void setOnLabelSend() {

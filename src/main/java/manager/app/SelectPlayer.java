@@ -1,13 +1,8 @@
 package manager.app;
 
-import android.app.Activity;
-import android.app.ActivityOptions;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -15,12 +10,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class SelectPlayer extends Activity {
+public class SelectPlayer extends BaseActivity {
 
     public static int game = 0;
-    private ArrayList<String[]> listComplete = new ArrayList<String[]>();
-    private ArrayList<Integer> idSelect = new ArrayList<Integer>(), idGoalKeepers = new ArrayList<Integer>(), idPlayers = new ArrayList<Integer>();
-    private ArrayList<String> playersName = new ArrayList<String>(), GoalKeepersName = new ArrayList<String>(), list = new ArrayList<String>();
+    private ArrayList<String[]> listComplete = new ArrayList<>();
+    private ArrayList<Integer> idSelect = new ArrayList<>(), idGoalKeepers = new ArrayList<>(), idPlayers = new ArrayList<>();
+    private ArrayList<String> playersName = new ArrayList<>(), GoalKeepersName = new ArrayList<>(), list = new ArrayList<>();
 
     private ImageView next;
     private ListView mylist;
@@ -42,11 +37,7 @@ public class SelectPlayer extends Activity {
 
     @Override
     public void onBackPressed() {
-        Intent newIntent = new Intent(SelectPlayer.this, MainActivity.class)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(newIntent, ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_pre, R.anim.animation_post).toBundle());
-        System.gc();
+        navigateTo(MainActivity.class);
     }
 
     @Override
@@ -60,28 +51,22 @@ public class SelectPlayer extends Activity {
         dbHelper.close();
         writableDatabase.close();
 
-        for (int i = 0; i < listComplete.size(); i++) {
-            list.add(listComplete.get(i)[2] + " - " + listComplete.get(i)[1] + " - " + listComplete.get(i)[3]);
+        list.clear();
+        for (String[] player : listComplete) {
+            list.add(player[2] + " - " + player[1] + " - " + player[3]);
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, list);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, list);
         mylist.setAdapter(adapter);
         mylist.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        mylist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            }
+        mylist.setOnItemClickListener((parent, view, position, id) -> {});
 
-        });
-
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                idSelect.clear();
-                idGoalKeepers.clear();
-                idPlayers.clear();
-                playersName.clear();
-                GoalKeepersName.clear();
+        next.setOnClickListener(v -> {
+            idSelect.clear();
+            idGoalKeepers.clear();
+            idPlayers.clear();
+            playersName.clear();
+            GoalKeepersName.clear();
 
                 int len = mylist.getCount();
                 SparseBooleanArray checked = mylist.getCheckedItemPositions();
@@ -122,11 +107,7 @@ public class SelectPlayer extends Activity {
                         OrganizeTeam.name_gio_org = playersName;
                         OrganizeTeam.name_por_org = GoalKeepersName;
                         OrganizeTeam.game_org = 5;
-                        Intent newIntent = new Intent(SelectPlayer.this, OrganizeTeam.class)
-                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(newIntent);
-                        System.gc();
+                        navigateTo(OrganizeTeam.class);
                     }
 
                     if (game == 7) {
@@ -136,11 +117,7 @@ public class SelectPlayer extends Activity {
                         OrganizeTeam.name_gio_org = playersName;
                         OrganizeTeam.name_por_org = GoalKeepersName;
                         OrganizeTeam.game_org = 7;
-                        Intent newIntent = new Intent(SelectPlayer.this, OrganizeTeam.class)
-                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(newIntent);
-                        System.gc();
+                        navigateTo(OrganizeTeam.class);
                     }
                 }
                 if (!goalKeepers && !players) {
@@ -151,8 +128,6 @@ public class SelectPlayer extends Activity {
                         Toast.makeText(getApplicationContext(), "seleziona 2 portieri e 12 giocatori.", Toast.LENGTH_LONG).show();
                     }
                 }
-            }
-
         });
     }
 }
