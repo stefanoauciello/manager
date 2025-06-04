@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="Versione">Manager - Versione 2.0</string>
+    <string name="app_name">Manager</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_a_cinque">Calcetto a 5</string>
+    <string name="title_activity_add_player">Aggiungi Giocatore</string>
+    <string name="title_activity_a_sette">Calcio a 7</string>
+    <string name="title_activity_manage_player">Gestisci giocatori</string>
+    <string name="title_activity_insert_player">Inserisci giocatore</string>
+    <string name="title_activity_a_undici">Calcio a 11</string>
+    <string name="title_activity_formazioni">Formazioni</string>
+    <string name="title_activity_info">Informazioni</string>
+    <string name="title_activity_informa">Informa Giocatori</string>
+    <string name="title_activity_manuale">Manuale</string>
+    <string name="title_activity_sms">Sms</string>
+    <string name="portieri">Portieri</string>
+    <string name="giocatori">Giocatori</string>
+    <string name="Aggiungigiocatori">Aggiungi Giocatore</string>
+    <string name="Prosegui">Prosegui</string>
+    <string name="Nome">Nome</string>
+    <string name="Ruolo">Ruolo</string>
+    <string name="Portiere">Portiere</string>
+    <string name="Giocatore">Giocatore</string>
+    <string name="Attacco">Attacco</string>
+    <string name="Difesa">Difesa</string>
+    <string name="Fisico">Fisico</string>
+    <string name="Aggiungi">Aggiungi</string>
+    <string name="SquadraA">Squadra A</string>
+    <string name="SquadraB">Squadra B</string>
+    <string name="Dove">Dove si gioca?</string>
+    <string name="Mescola">Mescola Casuale</string>
+    <string name="Informa">Informa Giocatori</string>
+    <string name="Avvisa">Avvisa</string>
+    <string name="Calcioa">Calcio a :</string>
+    <string name="cinque">5</string>
+    <string name="sette">7</string>
+    <string name="undici">11</string>
+    <string name="giorno">Giorno</string>
+    <string name="mese">Mese</string>
+    <string name="anno">Anno</string>
+    <string name="dalle">Dalle</string>
+    <string name="alle">Alle</string>
+    <string name="Organizzato">Organizzato da :</string>
+    <string name="Organizza">Organizza</string>
+    <string name="es1">(es. 16)</string>
+    <string name="es2">(es. 10)</string>
+    <string name="es3">(es. 2014)</string>
+    <string name="Descrizione">"L’app “manager” ti permette di organizzare le tue partite con estrema semplicità : ti basterà inserire i nomi dei giocatori e gli opportuni parametri ! Al resto provvederà direttamente il programma : basandosi su un algoritmo da me ideato e sui parametri dei giocatori immessi organizzerà le due squadre in modo più equilibrato possibile ; è possibile organizzare partite a 5 , 7 o 11. Se le squadre fatte dal programma non ti soddisfano , no problem! Vi è una funzione completamente casuale che rimescola le squadre , questa volta non tenendo minimamente conto dei parametri inseriti in precedenza . Non ti basta fare lo screen delle squadre e condividerlo con gli amici? L’app concede l'invio degli sms , ciò provvede ad avvisare direttamente i giocatori della loro convocazione! Sceglierai , in base ai partecipanti , direttamente dalla tua rubrica a chi inviare l’sms di convocazione.  Per eventuale segnalazione di bug o consigli/suggerimenti  Rivolgersi alla mail del produttore : AucielloStefano1@gmail.com "</string>
+    <string name="seleziona">Seleziona Numero</string>
+    <string name="annulla">Annulla</string>
+    <string name="Inserisci">(Inserisci numero di telefono)</string>
+    <string name="Costo">(Il costo del messaggio sarà addebitato al suo credito)</string>
+    <string name="Messaggio">Messaggio</string>
+    <string name="first_frame">Seleziona Modalità</string>
+    <string name="select_player">Seleziona Giocatori</string>
+    <string name="edit_player">Modifica Giocatore</string>
+    <string name="organize_team">Squadre</string>
+    <string name="location_sms">Dove e quando</string>
+
+
+</resources>
