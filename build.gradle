@@ -25,6 +25,7 @@ android {
     compileSdkVersion 34
     defaultConfig {
         applicationId "manager.app"
+        // Material library 1.12.0 requires API 19 or higher
         minSdkVersion 19
         targetSdkVersion 34
         versionCode 10
