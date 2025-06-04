@@ -25,7 +25,7 @@ android {
     compileSdkVersion 34
     defaultConfig {
         applicationId "manager.app"
-        // Material library 1.12.0 requires API 19 or higher
+        // Material 1.12.0 and AppCompat 1.6.1 require API 19 or higher
         minSdkVersion 19
         targetSdkVersion 34
         versionCode 10
@@ -49,7 +49,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.7.0'
+    // AppCompat 1.7.0 requires API 21. Use 1.6.1 to keep minSdk 19
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.core:core:1.13.1'
     implementation 'androidx.cardview:cardview:1.0.0'
