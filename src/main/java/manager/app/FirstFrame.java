@@ -1,11 +1,11 @@
 package manager.app;
 
 import android.os.Bundle;
-import android.widget.ImageView;
+import com.google.android.material.button.MaterialButton;
 
 public class FirstFrame extends BaseActivity {
 
-    private ImageView buttonFive, buttonSeven;
+    private MaterialButton buttonFive, buttonSeven;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

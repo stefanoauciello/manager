@@ -5,8 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,7 @@ public class EditPlayer extends BaseActivity {
 
     private EditText name;
     private CheckBox goalkeeper;
-    private ImageView save, delete;
+    private MaterialButton save, delete;
 
     private MySQLiteHelper dbHelper;
     private SQLiteDatabase readableDatabase;

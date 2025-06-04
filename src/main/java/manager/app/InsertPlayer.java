@@ -1,13 +1,11 @@
 package manager.app;
 
-import android.app.ActivityOptions;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 
@@ -19,7 +17,7 @@ public class InsertPlayer extends BaseActivity {
 
     private EditText name;
     private CheckBox goalkeeper;
-    private ImageView insert;
+    private MaterialButton insert;
 
     private MySQLiteHelper dbHelper;
     private SQLiteDatabase readableDatabase;

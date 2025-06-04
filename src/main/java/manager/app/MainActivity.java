@@ -1,14 +1,12 @@
 package manager.app;
 
-import android.app.ActivityOptions;
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
+import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends BaseActivity {
 
-    private ImageView managePlayers, createTeam, exit;
+    private MaterialButton managePlayers, createTeam, exit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
